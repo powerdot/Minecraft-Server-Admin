@@ -1,0 +1,22 @@
+{
+  "name": "minecraft_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.4.14",
+    "axios": "^0.19.2",
+    "decompress": "^4.2.1",
+    "download-file": "^0.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "js-file-download": "^0.4.11",
+    "minecraft-runner": "0.0.4",
+    "rimraf": "^3.0.2"
+  }
+}
