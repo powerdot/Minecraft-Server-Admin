@@ -18,11 +18,16 @@ apt-get upgrade –y
 # ok
 
 echo "Installing: nodejs"
-apt install nodejs
+apt install nodejs -y
 # ok
 
+echo "Updating: nodejs"
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+apt-get install -y nodejs
+#ok
+
 echo "Installing: npm"
-apt install npm
+apt install npm -y
 # ok
 
 echo "Installing: npm pm2"
@@ -30,11 +35,11 @@ npm i pm2 -g
 # ok
 
 echo "Installing: git"
-apt install git
+apt install git -y
 # ok
 
 echo "Installing: openjdk-8-jre-headless"
-apt install openjdk-8-jre-headless
+apt install openjdk-8-jre-headless -y
 
 echo "Cloning git repo to path /mcadmin"
 git clone https://github.com/powerdot/Minecraft-Server-Admin /mcadmin
@@ -49,7 +54,10 @@ echo "Deploing: npm i"
 npm i
 
 echo "Deploing: pm2 start"
-pm2 start index.js --name mcadmin --max-memory-restart=4000MB
+pm2 start index.js --name mcadmin
+
+echo "Setting server to launch after startup"
+pm2 startup upstart
 
 echo "Now it's ready to go! Just go to http://<youripaddress>:2020/ and login!"
 
