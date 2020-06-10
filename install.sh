@@ -38,6 +38,7 @@ apt install openjdk-8-jre-headless
 
 echo "Cloning git repo to path /mcadmin"
 git clone https://github.com/powerdot/Minecraft-Server-Admin /mcadmin
+cd /mcadmin
 
 read -p "What password for admin do you want to use?: " password
 echo "{\"password\":\"$password\"}" > /mcadmin/config.json
