@@ -32,7 +32,7 @@
   },
   "bundleDependencies": false,
   "dependencies": {
-    "lodash": "~1.0"
+    "lodash": "~4.17"
   },
   "deprecated": false,
   "description": "A node module meant to manage a minecraft server instance",
