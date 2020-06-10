@@ -222,9 +222,27 @@ app.post('/uploadMap', async(req, res)=>{
 
     fs.unlinkSync(map_zip_path);
 
+    // nesting files first try
     if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
-        rimraf.sync(map_path);
-        return res.status(400).send("not found lavel.dat after unzip, add only nesting content.");
+
+        // searching inside folders
+        let dirs = getDirectories( path.resolve(map_path) );
+        let found = false;
+        for(let dir of dirs){
+            if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
+                // map found: replace current content with it
+                found = true;
+                fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
+                rimraf(map_path, function(){
+                    fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
+                });
+            }
+        }
+
+        if(!found){
+            rimraf.sync(map_path);
+            return res.status(400).send("not found lavel.dat after unzip, add only nesting content.");
+        }
     }
 
     res.send("map uploaded!");
@@ -288,7 +306,7 @@ app.get('/renameServerMap', (req, res)=>{
 app.get("/downloadServerMap", (req, res)=>{
     let name = getConfig("map");
     let server_path = path.resolve(servers_path, `server-${getConfig('server_version')}`);
-    child_process.execSync(`zip -r ${name}.zip ./${name}`, {
+    child_process.execSync(`zip -r "${name}.zip" "./${name}"`, {
         cwd: server_path
     });
     res.download(server_path + `/${name}.zip`);

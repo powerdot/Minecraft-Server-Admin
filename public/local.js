@@ -160,7 +160,24 @@ $("[action-query]").click(function(){
     }
 });
 
+$('[change-query]').change(function(){
+    let q = $(this).attr('change-query');
+    let key = $(this).attr('change-query-key')||"value";
+    let value = $(this).val();
+    query(q, {[key]: value}, function(d){
+        if(!d) {
+            if($(this).attr('change-query-error')) swal.fire('Wow!', $(this).attr('change-query-error'),'error');
+            return; 
+        }
+        if($(this).attr('change-query-success')) swal.fire('Done!', $(this).attr('change-query-success'),'success');
+        updateDataQuery({force: true});
+    });
+});
+
 setInterval(updateDataQuery, 2000);
+
+
+
 
 // ** ROUTING ** //
 
@@ -184,6 +201,9 @@ $.fn.hasAttr = function(name) {
 $("[to-subpage]").click(function(){
     changeSubpage($(this).attr("to-subpage"));
 });
+
+
+
 
 // ** LOGIN AND PAGE LOADING ** //
 
@@ -225,6 +245,8 @@ $('.login').click(function(){
 });
 
 
+
+
 // ** BUTTONS TRIGGERS ** //
 
 $('.quit').click(function(){
@@ -249,23 +271,8 @@ $("button.install_server_version").click(function(){
     });
 });
 
-$('select.available_versions').change(function(){
-    let _v = $(this).val();
-    query("setServerVersion", {version: _v}, function(d){
-        if(!d) return swal.fire('Wow!','Error while action query.','error');
-        swal.fire('Done!','Version changed to '+_v,'success');
-        updateDataQuery({force: true});
-    });
-});
 
-$('select.available_maps').change(function(){
-    let _m = $(this).val();
-    query("setServerMap", {map: _m}, function(d){
-        if(!d) return swal.fire('Wow!','Error while action query.','error');
-        swal.fire('Done!','Map changed to '+_m,'success');
-        updateDataQuery({force: true});
-    });
-});
+
 
 // ** DATA EDITOR ** //
 
@@ -343,6 +350,8 @@ $('[subpage="upload_server_map"] .upload_server_map').click(function(){
         if(data.status==200){
             changeSubpage('main');
             updateDataQuery({force: true});
+            $('[subpage="upload_server_map"] input[type="file"]').val("");
+            $('[subpage="upload_server_map"] input[type="text"]').val("");
             return swal.fire("Upload complete", "Now you can use your map for plaing!", "success");
         }else{
             data.text().then(function(x){

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://use.fontawesome.com/f9f10843ac.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/f9f10843ac.css">
     <link rel="stylesheet" href="local.css">
 </head>
 <body>
@@ -168,11 +168,11 @@
 
                             <div class='server_settings show_on_offline'>
                                 <span>Sever Version: </span>
-                                <select class="available_versions" data-query="serverVersions"></select>
+                                <select data-query="serverVersions" change-query="setServerVersion" change-query-key="version"></select>
                                 <span class='right_link_button' to-subpage="install_server_version">Install new one</span>
                                 <br>
                                 <span>Map: </span>
-                                <select class="available_maps" data-query="serverMaps"></select>
+                                <select data-query="serverMaps" change-query="setServerMap" change-query-key="map"></select>
                                 <i class="fa fa-cog map_edit" aria-hidden="true" to-subpage="map_editor"></i>
                                 <span class='right_link_button' to-subpage="upload_server_map">Upload new one</span>
                                 <br>
