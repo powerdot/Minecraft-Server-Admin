@@ -22,6 +22,12 @@ apt install nodejs
 echo "Installing: npm"
 apt install npm
 
-node index.js
+echo "Installing: npm pm2"
+npm i pm2 -g
+
+# set on startup
+
+# pm
+pm2 start index.js --name mcadmin
 
 exit 0
