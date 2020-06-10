@@ -13,33 +13,33 @@ if [ $(id -u) != "0" ]; then
 fi
 
 echo "System update"
-apt-get update -y
-apt-get upgrade –y
+apt-get update -qq
+apt-get upgrade –qq
 # ok
 
 echo "Installing: nodejs"
-apt install nodejs -y
+apt install nodejs -qq
 # ok
 
 echo "Updating: nodejs"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-apt-get install -y nodejs
+apt-get install -qq nodejs
 #ok
 
 echo "Installing: npm"
-apt install npm -y
+apt install npm -qq
 # ok
 
 echo "Installing: npm pm2"
-npm i pm2 -g
+npm i pm2 -g --silent
 # ok
 
 echo "Installing: git"
-apt install git -y
+apt install git -y -qq
 # ok
 
 echo "Installing: openjdk-8-jre-headless"
-apt install openjdk-8-jre-headless -y
+apt install openjdk-8-jre-headless -y -qq
 
 echo "Cloning git repo to path /mcadmin"
 git clone https://github.com/powerdot/Minecraft-Server-Admin /mcadmin
@@ -51,7 +51,7 @@ echo "{\"password\":\"$password\"}" > /mcadmin/config.json
 
 # pm
 echo "Deploing: npm i"
-npm i
+npm i --silent
 
 echo "Deploing: pm2 start"
 pm2 start index.js --name mcadmin

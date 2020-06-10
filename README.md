@@ -7,6 +7,7 @@
 * Map backups
 * Change admin password
 * Configure RAM for server (minecraft runner option)
+* Optimize SDF engine queries (too much in Network)
 
 ## Easy deploy
 Just enter this line:
@@ -23,7 +24,9 @@ wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/in
 sudo ./install.sh
 ```
 
-Press "Y" while installing.
+Then we advice you to restart server to erase RAM usage by installing.  
+After that you can access your Web Admin by: http://<youripaddress>:2020 and your password!  
+Hooray!
 
 ## You can run server on
 * Yandex Cloud
