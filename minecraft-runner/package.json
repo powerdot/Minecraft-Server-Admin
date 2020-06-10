@@ -1,0 +1,64 @@
+{
+  "_from": "minecraft-runner@0.0.4",
+  "_id": "minecraft-runner@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-IRbX//Wo0nSKZHbsBwdnS7HTKyQ=",
+  "_location": "/minecraft-runner",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "minecraft-runner@0.0.4",
+    "name": "minecraft-runner",
+    "escapedName": "minecraft-runner",
+    "rawSpec": "0.0.4",
+    "saveSpec": null,
+    "fetchSpec": "0.0.4"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/minecraft-runner/-/minecraft-runner-0.0.4.tgz",
+  "_shasum": "2116d7fff5a8d2748a6476ec0707674bb1d32b24",
+  "_spec": "minecraft-runner@0.0.4",
+  "_where": "/Users/ilarycagov/dev/minecraft_server/Minecraft-Server-Admin",
+  "author": {
+    "name": "Dominic Barnes",
+    "email": "dominic@dbarnes.info"
+  },
+  "bugs": {
+    "url": "https://github.com/dominicbarnes/node-minecraft-runner/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lodash": "~1.0"
+  },
+  "deprecated": false,
+  "description": "A node module meant to manage a minecraft server instance",
+  "devDependencies": {
+    "mkdirp": "~0.3.5",
+    "mocha": "~1.8.1",
+    "rimraf": "~2.2.2",
+    "should": "~1.2.1"
+  },
+  "homepage": "https://github.com/dominicbarnes/node-minecraft-runner#readme",
+  "keywords": [
+    "minecraft",
+    "server",
+    "game",
+    "runner",
+    "events"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "minecraft-runner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominicbarnes/node-minecraft-runner.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "0.0.4"
+}

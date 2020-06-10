@@ -1,0 +1,144 @@
+body{
+    margin: 0;
+}
+
+.hidden{
+    display: none!important;
+}
+
+[page='login']{
+    padding-top: 100px;
+}
+
+[page='loading']{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: gray;
+}
+
+.login_info{
+    color: #929292;
+    font-size: 10pt;
+    text-align: center;
+    margin-top: 30px;
+}
+
+[subpage="first"], [subpage="install_server_version"], [subpage="upload_server_map"], [subpage="loading"], [subpage="map_editor"]{
+    padding-top: 100px;
+}
+
+[subpage="main"]{
+    margin-top: 50px;
+}
+
+button i{
+    font-size: 10pt !important;
+    position: relative;
+    top: -1px;
+    margin-right: 5px;
+}
+
+.card{
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.gameStatus{
+    margin-bottom: 10px;
+    padding-left: 5px;
+    border-left: 1px solid #dadada;
+}
+
+.public_address{
+    margin-bottom: 10px;
+    font-size: 10pt;
+}
+
+.server_console{
+    background: #eee;
+    padding: 5px 10px;
+    font-family: monospace;
+    margin-bottom: 10px;
+    height: 200px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.server_console_input{
+    font-family: monospace;
+    margin-bottom: 5px;
+    outline: none;
+}
+
+.right_link_button{
+    display: inline-block;
+    text-align: right;
+    text-decoration: underline;
+    position: relative;
+    font-size: 10pt;
+    opacity: 0.4;
+    cursor: pointer;
+    top: 1px;
+    float: right;
+}
+.right_link_button:hover{
+    opacity: 1;
+}
+
+.map_edit{
+    opacity: 0.5;
+    cursor: pointer;
+}
+.map_edit:hover{
+    opacity: 1;
+}
+
+body[gameStatus="online"] .show_on_offline{
+    display: none !important;
+}
+body[gameStatus="working"] .show_on_offline, body[gameStatus="working"] .show_on_online{
+    display: none !important;
+}
+body[gameStatus="offline"] .show_on_online{
+    display: none !important;
+}
+
+.server_settings{
+    margin: 10px 0;
+}
+
+body[gamestatus="offline"] [data-editable]{
+    background: rgba(0,0,0,0.1);
+    padding: 0 5px;
+}
+body[gamestatus="offline"] [data-editable]:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.data-editor{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -24px;
+    margin-left: 0;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 70px rgba(0,0,0,0.2);
+}
+.data-editor .title{
+    display: none;
+}
+.data-editor .content{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 300px;
+}
+.data-editor .content .input{
+    width: 100%;
+    height: 26px;
+}
+.data-editor .buttons{
+    text-align: right;
+}
