@@ -44,8 +44,13 @@ if(!getConfig("password")){
     runExpressServer()
 }
 
-function runExpressServer(){
-    console.log("Login at http://<your ip>:2020");
+async function runExpressServer(){
+    let ip_req = await axios.get("https://api.ipify.org");
+    let ip = ip_req.data;
+    public_ip_data = {
+        ip
+    };
+    console.log(`Login at http://${public_ip_data.ip}:2020 or http://localhost:2020`);
     app.listen(2020);
 }
 

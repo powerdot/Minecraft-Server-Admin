@@ -2,6 +2,14 @@ body{
     margin: 0;
 }
 
+.quit{
+    color: #f44336 !important;
+    opacity: 0.7;
+}
+.quit:hover{
+    opacity: 1;
+}
+
 .hidden{
     display: none!important;
 }
