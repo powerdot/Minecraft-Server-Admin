@@ -56,10 +56,12 @@ If you can't access your server by web-browser, try to open ports:
 This one for Web Admin.
 ```bash
 sudo iptables -I INPUT -p tcp -m tcp --dport 2020 -j ACCEPT
+ufw allow 2020
 ```
 ... and this one for Minecraft Server.
 ```bash
 sudo iptables -I INPUT -p tcp -m tcp --dport 25565 -j ACCEPT
+ufw allow 25565
 ```
 
 ## Minecraft Admin can't find maps (selectbox is empty)

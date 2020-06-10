@@ -56,6 +56,10 @@ npm i
 echo "Deploing: pm2 start"
 pm2 start index.js --name mcadmin
 
+echo "Setting up ports: 2020 and 25565"
+ufw allow 2020
+ufw allow 25565
+
 echo "Setting server to launch after startup"
 pm2 startup upstart
 
