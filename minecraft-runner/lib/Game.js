@@ -3,7 +3,8 @@ var events   = require("events"),
     spawn    = require("child_process").spawn,
     util     = require("util"),
     _        = require("lodash"),
-    patterns = require("./patterns");
+    patterns = require("./patterns"),
+    os = require("os");
 
 /**
  * Create an instance of a minecraft server. Each instance can spawn a process
@@ -29,7 +30,7 @@ function Game(dir, jar, options) {
 util.inherits(Game, events.EventEmitter);
 
 // default properties
-Game.prototype.ram = "1G";
+Game.prototype.ram = ((os.totalmem()/1024/1024) - 100)+"M"//"1G";
 Game.prototype.java = "java";
 Game.prototype.status = "Stopped";
 
@@ -161,8 +162,8 @@ Game.parseLog = function (line) {
         meta;
 
     meta = {
-        datetime: data.shift() + " " + data.shift(),
-        level:    data.shift().replace(/\W/g, ""),
+        datetime: (data.shift()||"") + " " + data.shift(),
+        level:    (data.shift()||"").replace(/\W/g, ""),
         text:     data.join(" ")
     };
 

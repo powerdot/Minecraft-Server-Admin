@@ -1,11 +1,11 @@
 var _ = require("lodash"),
-    patterns = {
-        version: /^Starting minecraft server version ([.0-9a-zA-Z]+)$/,
-        done:    /^Done \([.0-9a-zA-Z]+\)!/,
-        join:    /^(\w+) ?(\[(.+)\] )?logged in with entity id (\d+) at \(([\d\s\-\.,]+)\)$/,
-        leave:   /^(\w+) lost connection: (.+)$/,
-        bind:    /^\*+ FAILED TO BIND TO PORT\!$/
-    };
+patterns = {
+    version: /^Starting minecraft server version ([.0-9a-zA-Z]+)$/,
+    done:    /^Done \([.0-9a-zA-Z]+\)!/,
+    join:    /^(\w+) ?(\[(.+)\] )?logged in with entity id (\d+) at \(([\d\s\-\.,]+)\)$/,
+    leave:   /^(\w+) lost connection: (.+)$/,
+    bind:    /^\*+ FAILED TO BIND TO PORT\!$/
+};
 
 
 // modify game info/state
@@ -44,6 +44,7 @@ exports.left = function (game, meta) {
     var match = meta.text.match(patterns.leave);
 
     if (match) {
+        console.log(game.players);
         game.players = _.without(game.players, match[1]);
         game.emit("left", match[1], match[2]);
     }

@@ -10,6 +10,9 @@ const decompress = require('decompress');
 var rimraf = require("rimraf");
 const readline = require("readline");
 const child_process = require('child_process');
+var os = require('os');
+
+console.log("Server running on",os.totalmem()/1024/1024, 'MB RAM');
 
 let public_ip_data;
 
