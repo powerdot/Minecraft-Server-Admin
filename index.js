@@ -14,6 +14,9 @@ var os = require('os');
 let compareVersions = require('compare-versions');
 var pjson = require('./package.json');
 let exec = require("child_process").exec;
+var timeout = require('connect-timeout');
+
+app.use(timeout('1000s'));
 
 let new_version_available = false;
 

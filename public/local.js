@@ -418,21 +418,27 @@ $('[subpage="upload_server_map"] .upload_server_map').click(function(){
     formData.append("map", map);
     formData.append("name", $('[subpage="upload_server_map"] input[type="text"]').val());
     $('[subpage="upload_server_map"] .upload_server_map').prop({disabled: true});
-    fetch('/uploadMap?password='+localStorage.NMAPassword, {method: "POST", body: formData}).then(function(data){
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.upload.onprogress = function(event) {
+        $('[subpage="upload_server_map"] .upload_server_map').text("Uploading: "+ (parseInt((event.loaded/event.total)*100)+"%") );
+    }
+    
+    xhr.onload = xhr.onerror = function() {
         $('[subpage="upload_server_map"] .upload_server_map').prop({disabled: false});
-        if(data.status==200){
+        $('[subpage="upload_server_map"] .upload_server_map').text("Upload!");
+        if (this.status == 200) {
             changeSubpage('main');
             updateDataQuery({force: true});
             $('[subpage="upload_server_map"] input[type="file"]').val("");
             $('[subpage="upload_server_map"] input[type="text"]').val("");
             return swal.fire("Upload complete", "Now you can use your map for plaing!", "success");
-        }else{
-            data.text().then(function(x){
-                swal.fire("Upload error", x, "error");
-            });
+        } else {
+            swal.fire("Upload error", this.responseText.toString(), "error");
         }
-    }).catch(function(x){
-        console.log(x);
-        
-    });
-})
+    };
+
+    xhr.open("POST", '/uploadMap?password='+localStorage.NMAPassword, true);
+    xhr.send(formData);
+});
