@@ -160,6 +160,8 @@ function updateDataQuery(params = {}){
                     return $(val).removeClass("hidden");
                 });
 
+                if(!_data) continue;
+
                 $('[data-query="'+depended_data_query+'"]').each(function(i, val){
                     let tag = $(this).prop("tagName");
                     if(tag == "SELECT"){
