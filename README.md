@@ -1,15 +1,8 @@
 # NodeJs Minecraft Admin
 
-## To do
-* Server online stats
-* VPS stats
-* Update api routing
-* Map backups
-* Change admin password
-* Configure RAM for server (minecraft runner option)
-* Optimize SDF engine queries (too much in Network)
+[![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png)](https://github.com/powerdot/Minecraft-Server-Admin)
 
-## Easy deploy
+# Easy deploy
 Just enter this line:
 ```bash
 wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh && ./install.sh
@@ -25,8 +18,10 @@ sudo ./install.sh
 ```
 
 Then we advice you to restart server to erase RAM usage by installing.  
-After that you can access your Web Admin by: http://<youripaddress>:2020 and your password!  
+After that you can access your Web Admin by: http://your.ip.address:2020 and your password!  
 Hooray!
+
+# Where to run
 
 ## You can run server on
 * Yandex Cloud
@@ -58,7 +53,7 @@ Hooray!
 * Ubuntu 18.04
 * 1 VCPU
 * 1GB RAM
-* 25GB SSD
+* 25GB SSD  
 Good for 3-6 players.  
 Fast (SSD) and stable.
 
@@ -68,7 +63,7 @@ Fast (SSD) and stable.
 * 5% CPU Garantee
 * 2 VCPU
 * 2GB RAM
-* 13GB HDD
+* 13GB HDD  
 Good for 7-10 players.  
 But turns off every 24 hours.
 
@@ -76,9 +71,17 @@ But turns off every 24 hours.
 * Ubuntu 18.04
 * 1 VCPU
 * 1GB RAM
-* 30GB HDD
+* 30GB HDD  
 Good for 2-4 players.  
-Works good.
+Works good, but slow.
+
+### Selectel (620RUB ~ $9)
+* Ubuntu 16.04
+* 1 VCPU
+* 1GB RAM
+* 10GB HDD  
+Good for 2-4 players.  
+Works good, but slow.
 
 # Troubles
 
@@ -118,3 +121,12 @@ There is how you can update it:
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
+
+# To do
+* Server online stats
+* VPS stats
+* Update api routing
+* Map backups
+* Change admin password
+* Configure RAM for server (minecraft runner option)
+* Optimize SDF engine queries (too much in Network)
