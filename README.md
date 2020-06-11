@@ -41,7 +41,7 @@ Hooray!
 * Server allocation: everywhere
 * 5GB HDD
 * 1GB RAM
-* 1 CPU
+* 1 VCPU
 
 ## Configuration for good gameplay
 * Ubuntu 18.04 and higher
@@ -50,7 +50,35 @@ Hooray!
 * Server allocation: closest location (For example: city where you live)
 * 20GB SSD
 * 4GB RAM
-* 4 CPU
+* 4 VCPU
+
+## Configurations that we are tried already
+
+### DigitalOcean ($5)
+* Ubuntu 18.04
+* 1 VCPU
+* 1GB RAM
+* 25GB SSD
+Good for 3-6 players.  
+Fast (SSD) and stable.
+
+### Yandex Cloud (300RUB ~ $4,5)
+* Platform: Intel Cascade Lake
+* Ubuntu 18.04
+* 5% CPU Garantee
+* 2 VCPU
+* 2GB RAM
+* 13GB HDD
+Good for 7-10 players.  
+But turns off every 24 hours.
+
+### Vscale (400RUB ~ $6)
+* Ubuntu 18.04
+* 1 VCPU
+* 1GB RAM
+* 30GB HDD
+Good for 2-4 players.  
+Works good.
 
 # Troubles
 
