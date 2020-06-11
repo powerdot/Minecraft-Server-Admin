@@ -341,7 +341,7 @@ $("button.update_mca").click(function(){
     query("updateSystem");
     setTimeout(function(){
         document.location.reload(true);
-    }, 5000);
+    }, 10000);
 });
 
 

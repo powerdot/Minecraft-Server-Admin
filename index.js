@@ -115,6 +115,10 @@ app.get("/checkUpdate", async (req,res)=>{
     }
 });
 
+app.get("/mca_version", async (req,res)=>{
+    res.send(pjson.version);
+});
+
 app.get("/updateSystem", async (req,res)=>{
     //pjson.version
     if(!new_version_available) return res.status(400).send("Your server is up to date!");

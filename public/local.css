@@ -178,3 +178,15 @@ body[gamestatus="offline"] [data-editable]:hover{
 .findout:hover{
     opacity: 1;
 }
+
+
+.footer{
+    background: #f8f9fa;
+    color: rgba(0, 0, 0, 0.7);
+    padding: 30px 0px;
+    margin-top: 50px;
+}
+
+.footer a{
+    color: rgba(0, 0, 0, 0.7);
+}
