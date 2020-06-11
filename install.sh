@@ -74,9 +74,6 @@ echo ""
 echo "####### CONGRATULATIONS! ###################################################"
 echo "Now it's ready to go! Just go to http://<youripaddress>:2020/ and login!"
 echo ""
-echo "####### Your IP address looks like #########################################"
-hostname -I | cut -d' ' -f1
-echo ""
 echo "####### Your Web Admin Password is #########################################"
 echo $password
 echo ""
