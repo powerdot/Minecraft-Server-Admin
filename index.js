@@ -272,32 +272,34 @@ app.post('/uploadMap', async(req, res)=>{
     if(!req.body.name) return res.status(400).send("need 'name' param");
     if(!getConfig("server_version")) return res.status(400).send("set server_version");
     if(!req.body.version) req.body.version = getConfig("server_version");
-    
+    console.log(1);
     let server_path = path.resolve(servers_path, `server-${req.body.version}`);
     if( !fs.existsSync( server_path ) ) return res.status(400).send("no server directory exists");
-
+    console.log(2);
     let map_zip_path = server_path +"/"+ req.body.name + '.zip';
     let map_path = path.resolve(server_path, req.body.name);
     if( fs.existsSync( map_path ) ) return res.status(400).send("map with name exists");
-
+    console.log(3);
     fs.mkdirSync(map_path, {recursive: true});
-    
+    console.log(1);
     req.files.map.mv(map_zip_path);
-
+    console.log(4);
     await decompress(map_zip_path, map_path);
-
+    console.log(5);
     fs.unlinkSync(map_zip_path);
 
     // nesting files first try
     if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
-
+        console.log(6);
         // searching inside folders
         let dirs = getDirectories( path.resolve(map_path) );
         let found = false;
         for(let dir of dirs){
+            console.log(7);
             if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
                 // map found: replace current content with it
                 found = true;
+                console.log(8);
                 fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
                 rimraf(map_path, function(){
                     fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
