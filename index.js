@@ -111,12 +111,11 @@ app.get("/start", (req, res)=>{
         console.log("started!");
         res.send(getServerProperties());
     });
-    
 });
 
 app.get("/logs", (req,res)=>{
-    if(!game) return res.status(400).send("start game");
-    if(game.status != "Running") return res.status(400).send("start game");
+    if(!game) return res.send("");
+    if(game.status == "Stopped") return res.send("");
     let logs = game.log.split("\n").slice(-100);
     res.send(logs);
 });
@@ -351,8 +350,8 @@ app.get('/setServerMap', (req, res)=>{
 });
 
 app.get('/getServerFullAddress', async (req, res)=>{
-    if(!game) return res.status(500).send("start a game");
-    if(game.status!='Running') return res.status(500).send("waiting until game start...");
+    if(!game) return res.send("");
+    if(game.status!='Running') return res.send("");
     if(public_ip_data){
         if(public_ip_data.ip && public_ip_data.port) return res.send(public_ip_data);
     }
@@ -367,7 +366,7 @@ app.get('/getServerFullAddress', async (req, res)=>{
         };
         res.send(public_ip_data);
     } catch (error) {
-        res.status(500).send('can\'t resolve ip address or port');
+        res.send('can\'t resolve ip address or port');
     }
 });
 

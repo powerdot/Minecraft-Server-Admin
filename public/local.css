@@ -150,3 +150,31 @@ body[gamestatus="offline"] [data-editable]:hover{
 .data-editor .buttons{
     text-align: right;
 }
+
+.players_list{
+    background: #eeeeee;
+    height: 225px;
+    overflow: hidden;
+    overflow-y: scroll;
+    list-style: decimal;
+}
+.players_list li{
+    font-size: 10pt;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #dedede;
+}
+
+.findout{
+    text-align: right;
+    opacity: 0.5;
+    font-size: 10pt;
+    position: absolute;
+    top: 15px;
+    display: inline-block;
+    width: 250px;
+    right: 10px;
+}
+.findout:hover{
+    opacity: 1;
+}

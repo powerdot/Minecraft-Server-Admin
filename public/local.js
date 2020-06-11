@@ -53,19 +53,32 @@ let data_queries_types = {
     "getServerProperties:max-world-size": "number"
 }
 
+let query_queue = {};
+
 let data_queries = [];
+let primary_data_queries = [];
 $("[data-query]").each(function(i,val){
     if(!data_queries.includes($(this).attr('data-query'))) data_queries.push($(this).attr('data-query'));
+    if(!primary_data_queries.includes($(this).attr('data-query').split(":")[0])) primary_data_queries.push($(this).attr('data-query').split(":")[0]);
 });
 console.log("found data_queries:",data_queries);
+console.log("found primary_data_queries:",primary_data_queries);
 
 function query(path, params, cb){
     if(!cb) cb = function(){};
     if(!params) params = {};
+    let updated = (new Date()).getTime();
+    if(!query_queue[path]) query_queue[path] = {status: 'new', updated, query: undefined};
+    if(query_queue[path] == 'waiting') return console.log("waiting for response", query_queue[path], 'before create new query.');
+    query_queue[path] = {status: 'waiting', updated};
     // console.log("query", path, params);
     params.password = localStorage.NMAPassword;
     if(path == "install") changeSubpage("loading");
-    $.get(path, params).done(function(d){cb(d);}).fail(function(d){cb(false);});
+    query_queue[path].query = $.get(path, params).done(function(d){
+        cb(d); query_queue[path] = {status: 'done', updated};
+    }).fail(function(d){
+        cb(false); query_queue[path] = {status: 'error', updated};
+    });
 }
 
 let last_DataQueryUpdate = parseInt((new Date()).getTime()/1000)-10;
@@ -75,73 +88,86 @@ function updateDataQuery(params = {}){
     }
     last_DataQueryUpdate = parseInt((new Date()).getTime()/1000);
     if(!localStorage.NMAPassword) return;
-    for(let data_query of data_queries){
-        let raw_query = data_query.split(":")[0];
 
-        query(raw_query, {}, function(d){
+    for(let data_query of primary_data_queries){
+        query(data_query, {}, function(d){
             if(server_data[data_query] == JSON.stringify(d)) return;
             server_data[data_query] = JSON.stringify(d);
 
-            let d_current;
-            if(d.current) d_current = d.current;
+            let depended_data_queries = data_queries.filter(x=>x.includes(`${data_query}:`));
 
-            if(!data_query.includes(":")){
-                if(data_query == "serverVersions") d = d.versions;
-                if(data_query == "serverMaps") d = d.maps;
-            }else{
-                let levels = data_query.split(":");
-                let _d;
-                for(let level of levels) _d = d[level];
-                d = _d;
-            }
-            
-            if(data_queries_empty[data_query] && d.length == 0) d = data_queries_empty[data_query];
+            let d_current = d.current||undefined;
 
-            if(!d){
-                if(data_query=='logs') d = "Game not started";
-            }
+            depended_data_queries.push(data_query);
+            for(let depended_data_query of depended_data_queries){
 
-            if(data_query == "gameStatus"){
-                switch(d){
-                    case "Stopped":
-                    case "Offline":
-                        $("body").attr("gameStatus", "offline");
-                        break;
-                    case "Stopping":
-                    case "Starting":
-                        $("body").attr("gameStatus", "working");
-                        break;
-                    case "Running":
-                        $("body").attr("gameStatus", "online");
-                        break;
+                let _data = d;
+
+                if(!depended_data_query.includes(":")){
+                    if(data_query == "serverVersions") _data = _data.versions;
+                    if(data_query == "serverMaps") _data = _data.maps;
+                }else{
+                    let levels = depended_data_query.split(":");
+                    let _d;
+                    for(let level of levels) _d = _data[level];
+                    _data = _d;
                 }
-            }
 
-            $('[data-query="'+data_query+'"]').each(function(i, val){
-                let tag = $(this).prop("tagName");
-                console.log(data_query, $(val), tag, d);
+                if(data_queries_empty[depended_data_query] && d.length == 0) d = data_queries_empty[depended_data_query];
 
-                if(tag == "SELECT"){
-                    $(val).html("");
-                    let _html = "";
-                    for(let x of d) _html += ("<option value='"+x+"'>"+x+"</option>");
-                    $(val).html(_html);
-                    if(d_current) $(val).val(d_current);
+                if(!_data){
+                    if(depended_data_query=='logs') d = "Game not started";
                 }
+
+                if(depended_data_query == "gameStatus"){
+                    switch(d){
+                        case "Stopped":
+                        case "Offline":
+                            $("body").attr("gameStatus", "offline");
+                            break;
+                        case "Stopping":
+                        case "Starting":
+                            $("body").attr("gameStatus", "working");
+                            break;
+                        case "Running":
+                            $("body").attr("gameStatus", "online");
+                            break;
+                    }
+                }
+
+                $('[data-query="'+depended_data_query+'"]').each(function(i, val){
+                    let tag = $(this).prop("tagName");
+                    if(tag == "SELECT"){
+                        $(val).html("");
+                        let _html = "";
+                        for(let x of _data) _html += ("<option value='"+x+"'>"+x+"</option>");
+                        $(val).html(_html);
+                        if(d_current) $(val).val(d_current);
+                    }
+
+                    if(tag == "UL"){
+                        $(val).html("");
+                        let _html = "";
+                        for(let x of _data) _html += ("<li>"+x+"</li>");
+                        $(val).html(_html);
+                        if(d_current) $(val).val(d_current);
+                    }
+        
+                    if(tag == "INPUT"){
+                        $(val).val("");
+                        $(val).val(_data);
+                        $(val).attr("data", _data);
+                    }
     
-                if(tag == "INPUT"){
-                    $(val).val("");
-                    $(val).val(d);
-                    $(val).attr("data", d);
-                }
+                    if(tag == "DIV" || tag == "SPAN"){
+                        let _data_1 = Array.isArray(_data)?_data.join("<br>"):_data;
+                        $(val).html("");
+                        $(val).html(_data_1);
+                        $(val).attr("data", _data_1);
+                    }
+                });
 
-                if(tag == "DIV" || tag == "SPAN"){
-                    if(Array.isArray(d)) d = d.join("<br>");
-                    $(val).html("");
-                    $(val).html(d);
-                    $(val).attr("data", d);
-                }
-            });
+            }
             
             $(".server_console")[0].scrollTop = $(".server_console")[0].scrollHeight;
         });
@@ -271,6 +297,16 @@ $("button.install_server_version").click(function(){
     });
 });
 
+$(".server_console_input").keyup(function(e){
+    if(e.which == 13){
+        query("command", {text: $(this).val()}, function(data){
+            setTimeout(function(){
+                updateDataQuery({force: true});
+            }, 500);
+        });
+        $(this).val("");
+    }
+})
 
 
 
@@ -346,7 +382,9 @@ $('[subpage="upload_server_map"] .upload_server_map').click(function(){
     let formData = new FormData();
     formData.append("map", map);
     formData.append("name", $('[subpage="upload_server_map"] input[type="text"]').val());
+    $('[subpage="upload_server_map"] .upload_server_map').prop({disabled: true});
     fetch('/uploadMap?password='+localStorage.NMAPassword, {method: "POST", body: formData}).then(function(data){
+        $('[subpage="upload_server_map"] .upload_server_map').prop({disabled: false});
         if(data.status==200){
             changeSubpage('main');
             updateDataQuery({force: true});
