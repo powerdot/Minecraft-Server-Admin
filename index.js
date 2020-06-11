@@ -118,7 +118,7 @@ app.get("/checkUpdate", async (req,res)=>{
 app.get("/updateSystem", async (req,res)=>{
     //pjson.version
     if(!new_version_available) return res.status(400).send("Your server is up to date!");
-    exec("cd /mcadmin && git pull && npm i && pm2 restart main", (error, stdout, stderr) => {
+    exec("cd /mcadmin && git pull && npm i && pm2 restart mcadmin", (error, stdout, stderr) => {
         if (error) {
           console.error(`exec error: ${error}`);
           return;
