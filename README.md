@@ -1,33 +1,41 @@
 [![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png)](https://github.com/powerdot/Minecraft-Server-Admin)
 
 # Easy deploy
+
+## Step 1: Get a server
+Rent any server from any VPS/VDS provider: Yandex Cloud, Vscale, DigitalOcean and etc...
+
+Look for best cofigurations below.
+
+## Step 2: Login to server via SSH
+*On Windows by Pretty SSH Client.
+*On MacOS/Linux by terminal.
+
+## Step 3: Install
+
 Just enter this line:
 ```bash
 wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh && ./install.sh
 ```
 
-Or try it:
-Just enter this line:
+Or try this one:  
+Enter line:
 ```bash
 wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh
 ```
+And then enter:
 ```bash
 sudo ./install.sh
 ```
 
 Then we advice you to restart server to erase RAM usage by installing.  
+
 After that you can access your Web Admin by: http://your.ip.address:2020 and your password!  
 Hooray!
 
-# Where to run
+# Configurations
 
-## You can run server on
-* Yandex Cloud
-* Vscale
-* DigitalOcean
-* ... and any virtual hosting provider!
-
-## Minimal configuration
+## Minimal
 * Ubuntu 18.04
 * Public IP address
 * Internet connection
@@ -36,7 +44,7 @@ Hooray!
 * 1GB RAM
 * 1 VCPU
 
-## Configuration for good gameplay
+## For good gameplay
 * Ubuntu 18.04 and higher
 * Public IP address
 * Internet connection
