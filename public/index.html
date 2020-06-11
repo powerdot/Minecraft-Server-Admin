@@ -36,250 +36,252 @@
     </div>
 
     <div page='dash' class="hidden">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand dash_title" href="#"></a>
-            <div class="navbar-collapse collapse justify-content-between" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto"></ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" to-subpage="update_mca" show-if-data-query="checkUpdate"><i class="fa fa-angle-double-down" aria-hidden="true"></i> New version available!</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://patreon.com/minecraft_admin" target="_blank">Donate a coffee <i class="fa fa-coffee" aria-hidden="true"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link quit" href="#">Signout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div subpage="loading" class='hidden' headTitle="Loading">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                            <div class="form-group">
-                                Please wait...
-                            </div>
-                            <div class="form-group">
-                                Setting up your server... <br>
-                                <ul>
-                                    <li>Downloading server JAR</li>
-                                    <li>Starting server</li>
-                                    <li>Stopping server</li>
-                                    <li>Updating eula configuration</li>
-                                </ul>
-                                Just 1-3 minutes!
-                            </div>
+        <div class="body">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand dash_title" href="#"></a>
+                <div class="navbar-collapse collapse justify-content-between" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto"></ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" to-subpage="update_mca" show-if-data-query="checkUpdate"><i class="fa fa-angle-double-down" aria-hidden="true"></i> New version available!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://patreon.com/minecraft_admin" target="_blank">Donate a coffee <i class="fa fa-coffee" aria-hidden="true"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link quit" href="#">Signout</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+    
+            <div subpage="loading" class='hidden' headTitle="Loading">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
+                                <div class="form-group">
+                                    Please wait...
+                                </div>
+                                <div class="form-group">
+                                    Setting up your server... <br>
+                                    <ul>
+                                        <li>Downloading server JAR</li>
+                                        <li>Starting server</li>
+                                        <li>Stopping server</li>
+                                        <li>Updating eula configuration</li>
+                                    </ul>
+                                    Just 1-3 minutes!
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div subpage="first" class='hidden' headTitle="First instalation">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                            <div class="form-group">
-                                Let's go! Start your first installation.
-                            </div>
+    
+            <div subpage="first" class='hidden' headTitle="First instalation">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
+                                <div class="form-group">
+                                    Let's go! Start your first installation.
+                                </div>
+                                <div class="form-group">
+                                    Select server version: 
+                                    <select class='first_available_versions' data-query="findVersions"></select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block first_start_install">Yay! Start!</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div subpage="install_server_version" class='hidden' headTitle="Install server version">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
                             <div class="form-group">
                                 Select server version: 
-                                <select class='first_available_versions' data-query="findVersions"></select>
+                                <select class='install_server_version' data-query="findVersions"></select>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block first_start_install">Yay! Start!</button>
+                                <button type="submit" class="btn btn-primary btn-block install_server_version">Install!</button>
+                                <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
                             </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div subpage="install_server_version" class='hidden' headTitle="Install server version">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                        <div class="form-group">
-                            Select server version: 
-                            <select class='install_server_version' data-query="findVersions"></select>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block install_server_version">Install!</button>
-                            <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div subpage="map_editor" class='hidden' headTitle="Map editor">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                        <div class="form-group">
-                            Map name: <span data-query="getServerMap" data-action="rename" data-editable></span>
-                            <br>
-                            <br>
-                            <button type="submit" class="btn btn-success btn-block download_map" action-query="downloadServerMap" action-type="download">
-                                <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                Download Map
-                            </button>
-                            <button type="submit" class="btn btn-warning btn-block remove_map" action-query="removeServerMap" to-subpage="main">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                Remove Map
-                            </button>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default btn-block" to-subpage="main">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div subpage="upload_server_map" class='hidden' headTitle="Upload map to server">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                        <div class="form-group">
-                            Upload map to Server v<span data-query="serverVersions:current"></span>!
-                            <br>
-                            Archive with only nesting content.
-                            Look for `lavel.dat` file in it.
-                        </div>
-                        <div class="form-group">
-                            Select .zip archive:
-                            <input type="text" placeholder="Map name" style="margin-bottom: 10px;">
-                            <input type="file">
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block upload_server_map">Upload!</button>
-                            <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div subpage="update_mca" class='hidden' headTitle="Upload map to server">
-            <div class="container">
-                <div class='row'>
-                    <div class='mx-auto col-sm-3'>
-                        <div class="form-group">
-                           <h3><b>v<span data-query="checkUpdate"></span></b> is available!</h3>
-                           Update your server to get more features and less bugs!
-                           <br>
-                           <br>
-                           It will take few seconds.
-                           <br>
-                           Your data and maps will not erase.
-                        </div>
-                        <div class="form-group">
-                            <div style="text-align: center; font-size: 10pt;">Press</div>
-                            <button type="submit" class="btn btn-primary btn-block update_mca">here</button>
-                            <div style="text-align: center; font-size: 10pt;">to update system automatically.</div>
-
-                            <br>
-                            <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div subpage="main" class='hidden' headTitle="Dashboard">
-            <div class="container">
-                <div class='row'>
-                    <div class='col-sm-4'>
-                        <div class='card'>
-                            <h3>Server Status</h3>
-                            <div class='gameStatus' data-query="gameStatus"></div>
-                            <div class="show_on_online public_address">
-                                Public address: <span data-query="getServerFullAddress:full"></span>
-                            </div>
-
-                            <div class='server_settings show_on_offline'>
-                                <span>Sever Version: </span>
-                                <select data-query="serverVersions" change-query="setServerVersion" change-query-key="version"></select>
-                                <span class='right_link_button' to-subpage="install_server_version">Install new one</span>
+    
+            <div subpage="map_editor" class='hidden' headTitle="Map editor">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
+                            <div class="form-group">
+                                Map name: <span data-query="getServerMap" data-action="rename" data-editable></span>
                                 <br>
-                                <span>Map: </span>
-                                <select data-query="serverMaps" change-query="setServerMap" change-query-key="map"></select>
-                                <i class="fa fa-cog map_edit" aria-hidden="true" to-subpage="map_editor"></i>
-                                <span class='right_link_button' to-subpage="upload_server_map">Upload new one</span>
                                 <br>
-                            </div>
-
-                            <div class='show_on_offline'>
-                                <button class='btn btn-success' action-query="start">
-                                    <i class="fa fa-play" aria-hidden="true"></i>
-                                    Launch
+                                <button type="submit" class="btn btn-success btn-block download_map" action-query="downloadServerMap" action-type="download">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    Download Map
+                                </button>
+                                <button type="submit" class="btn btn-warning btn-block remove_map" action-query="removeServerMap" to-subpage="main">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    Remove Map
                                 </button>
                             </div>
-                            <div class="show_on_online">
-                                <button class='btn btn-warning' action-query="restart">
-                                    <i class="fa fa-refresh" aria-hidden="true"></i>
-                                    Restart
-                                </button>
-                                <button class='btn btn-danger' action-query="stop">
-                                    <i class="fa fa-stop" aria-hidden="true"></i>
-                                    Stop
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-sm'>
-                        <div class='card'>
-                            <h3>Server Properties</h3>
-                            <div>
-                                Name: <span data-query="getServerProperties:motd" data-editable>-</span><br>
-                                View distance: <span data-query="getServerProperties:view-distance" data-editable>-</span><br>
-                                Max players: <span data-query="getServerProperties:max-players" data-editable>-</span><br>
-                                Online mode: <span data-query="getServerProperties:online-mode" data-editable>-</span><br>
-                                Prevent proxy connections: <span data-query="getServerProperties:prevent-proxy-connections" data-editable>-</span><br>
-                                Enable command block: <span data-query="getServerProperties:enable-command-block" data-editable>-</span><br>
-                                Allow nether: <span data-query="getServerProperties:allow-nether" data-editable>-</span><br>
-                                Enable rcon: <span data-query="getServerProperties:enable-rcon" data-editable>-</span><br>
-                                Rcon password: <span data-query="getServerProperties:rcon.password" data-editable>-</span><br>
-                                Generator settings: <span data-query="getServerProperties:generator-settings" data-editable>-</span><br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-sm'>
-                        <div class='card'>
-                            <h3>Gameplay Settings</h3>
-                            <div>
-                                PVP: <span data-query="getServerProperties:pvp" data-editable>-</span><br>
-                                Difficulty: <span data-query="getServerProperties:difficulty" data-editable>-</span><br>
-                                Game Mode: <span data-query="getServerProperties:gamemode" data-editable>-</span><br>
-                                Hardcore: <span data-query="getServerProperties:hardcore" data-editable>-</span><br>
-                                Generate structures: <span data-query="getServerProperties:generate-structures" data-editable>-</span><br>
-                                Spawn npcs: <span data-query="getServerProperties:spawn-npcs" data-editable>-</span><br>
-                                Spawn animals: <span data-query="getServerProperties:spawn-animals" data-editable>-</span><br>
-                                Spawn monsters: <span data-query="getServerProperties:spawn-monsters data-editable">-</span><br>
-                                Spawn protection: <span data-query="getServerProperties:spawn-protection" data-editable>-</span><br>
-                                Allow flight: <span data-query="getServerProperties:allow-flight" data-editable>-</span><br>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default btn-block" to-subpage="main">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class='row'>
-                    <div class='col-sm-10'>
-                        <div class='card'>
-                            <h3>Server Console</h3>
-                            <div class="findout">
-                                <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                                Find out: 
-                                <a href="https://minecraft.gamepedia.com/Commands" target="_blank" rel="noopener noreferrer">Minecraft Commands</a>
+            </div>
+    
+            <div subpage="upload_server_map" class='hidden' headTitle="Upload map to server">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
+                            <div class="form-group">
+                                Upload map to Server v<span data-query="serverVersions:current"></span>!
+                                <br>
+                                Archive with only nesting content.
+                                Look for `lavel.dat` file in it.
                             </div>
-                            <div class='server_console' data-query="logs"></div>
-                            <input type="text" name="" class="server_console_input" placeholder="Enter command here">
+                            <div class="form-group">
+                                Select .zip archive:
+                                <input type="text" placeholder="Map name" style="margin-bottom: 10px;">
+                                <input type="file">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block upload_server_map">Upload!</button>
+                                <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
+                            </div>
                         </div>
                     </div>
-                    <div class='col-sm-2'>
-                        <div class='card'>
-                            <h3>Players</h3>
-                            <ul class='players_list' data-query="players"></ul>
+                </div>
+            </div>
+    
+            <div subpage="update_mca" class='hidden' headTitle="Upload map to server">
+                <div class="container">
+                    <div class='row'>
+                        <div class='mx-auto col-sm-3'>
+                            <div class="form-group">
+                               <h3><b>v<span data-query="checkUpdate"></span></b> is available!</h3>
+                               Update your server to get more features and less bugs!
+                               <br>
+                               <br>
+                               It will take few seconds.
+                               <br>
+                               Your data and maps will not erase.
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align: center; font-size: 10pt;">Press</div>
+                                <button type="submit" class="btn btn-primary btn-block update_mca">here</button>
+                                <div style="text-align: center; font-size: 10pt;">to update system automatically.</div>
+    
+                                <br>
+                                <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div subpage="main" class='hidden' headTitle="Dashboard">
+                <div class="container">
+                    <div class='row'>
+                        <div class='col-sm-4'>
+                            <div class='card'>
+                                <h3>Server Status</h3>
+                                <div class='gameStatus' data-query="gameStatus"></div>
+                                <div class="show_on_online public_address">
+                                    Public address: <span data-query="getServerFullAddress:full"></span>
+                                </div>
+    
+                                <div class='server_settings show_on_offline'>
+                                    <span>Sever Version: </span>
+                                    <select data-query="serverVersions" change-query="setServerVersion" change-query-key="version"></select>
+                                    <span class='right_link_button' to-subpage="install_server_version">Install new one</span>
+                                    <br>
+                                    <span>Map: </span>
+                                    <select data-query="serverMaps" change-query="setServerMap" change-query-key="map"></select>
+                                    <i class="fa fa-cog map_edit" aria-hidden="true" to-subpage="map_editor"></i>
+                                    <span class='right_link_button' to-subpage="upload_server_map">Upload new one</span>
+                                    <br>
+                                </div>
+    
+                                <div class='show_on_offline'>
+                                    <button class='btn btn-success' action-query="start">
+                                        <i class="fa fa-play" aria-hidden="true"></i>
+                                        Launch
+                                    </button>
+                                </div>
+                                <div class="show_on_online">
+                                    <button class='btn btn-warning' action-query="restart">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        Restart
+                                    </button>
+                                    <button class='btn btn-danger' action-query="stop">
+                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                        Stop
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm'>
+                            <div class='card'>
+                                <h3>Server Properties</h3>
+                                <div>
+                                    Name: <span data-query="getServerProperties:motd" data-editable>-</span><br>
+                                    View distance: <span data-query="getServerProperties:view-distance" data-editable>-</span><br>
+                                    Max players: <span data-query="getServerProperties:max-players" data-editable>-</span><br>
+                                    Online mode: <span data-query="getServerProperties:online-mode" data-editable>-</span><br>
+                                    Prevent proxy connections: <span data-query="getServerProperties:prevent-proxy-connections" data-editable>-</span><br>
+                                    Enable command block: <span data-query="getServerProperties:enable-command-block" data-editable>-</span><br>
+                                    Allow nether: <span data-query="getServerProperties:allow-nether" data-editable>-</span><br>
+                                    Enable rcon: <span data-query="getServerProperties:enable-rcon" data-editable>-</span><br>
+                                    Rcon password: <span data-query="getServerProperties:rcon.password" data-editable>-</span><br>
+                                    Generator settings: <span data-query="getServerProperties:generator-settings" data-editable>-</span><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm'>
+                            <div class='card'>
+                                <h3>Gameplay Settings</h3>
+                                <div>
+                                    PVP: <span data-query="getServerProperties:pvp" data-editable>-</span><br>
+                                    Difficulty: <span data-query="getServerProperties:difficulty" data-editable>-</span><br>
+                                    Game Mode: <span data-query="getServerProperties:gamemode" data-editable>-</span><br>
+                                    Hardcore: <span data-query="getServerProperties:hardcore" data-editable>-</span><br>
+                                    Generate structures: <span data-query="getServerProperties:generate-structures" data-editable>-</span><br>
+                                    Spawn npcs: <span data-query="getServerProperties:spawn-npcs" data-editable>-</span><br>
+                                    Spawn animals: <span data-query="getServerProperties:spawn-animals" data-editable>-</span><br>
+                                    Spawn monsters: <span data-query="getServerProperties:spawn-monsters data-editable">-</span><br>
+                                    Spawn protection: <span data-query="getServerProperties:spawn-protection" data-editable>-</span><br>
+                                    Allow flight: <span data-query="getServerProperties:allow-flight" data-editable>-</span><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-10'>
+                            <div class='card'>
+                                <h3>Server Console</h3>
+                                <div class="findout">
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                                    Find out: 
+                                    <a href="https://minecraft.gamepedia.com/Commands" target="_blank" rel="noopener noreferrer">Minecraft Commands</a>
+                                </div>
+                                <div class='server_console' data-query="logs"></div>
+                                <input type="text" name="" class="server_console_input" placeholder="Enter command here">
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class='card'>
+                                <h3>Players</h3>
+                                <ul class='players_list' data-query="players"></ul>
+                            </div>
                         </div>
                     </div>
                 </div>

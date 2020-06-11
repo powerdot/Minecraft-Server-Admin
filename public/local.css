@@ -41,6 +41,10 @@ body{
     margin-top: 50px;
 }
 
+[page="dash"] .body{
+    min-height: calc(100vh - 160px);
+}
+
 button i{
     font-size: 10pt !important;
     position: relative;
