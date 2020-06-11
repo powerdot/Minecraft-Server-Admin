@@ -68,17 +68,20 @@ echo "Setting server to launch after startup"
 pm2 startup upstart
 
 printf "\033c"
+echo ""
+echo ""
+echo ""
 echo "####### CONGRATULATIONS! ###################################################"
 echo "Now it's ready to go! Just go to http://<youripaddress>:2020/ and login!"
-echo "############################################################################"
+echo ""
 echo "####### Your IP address looks like #########################################"
 hostname -I | cut -d' ' -f1
-echo "############################################################################"
+echo ""
 echo "####### Your Web Admin Password is #########################################"
 echo $password
-echo "############################################################################"
+echo ""
 echo "####### Gift us with coffee ################################################"
 echo "-- -- -- >> https://www.patreon.com/minecraft_admin << -- -- --"
-echo "############################################################################"
+echo ""
 
 exit 0
