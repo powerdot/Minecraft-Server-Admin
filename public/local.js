@@ -334,6 +334,13 @@ $(".server_console_input").keyup(function(e){
     }
 })
 
+$("button.update_mca").click(function(){
+    $(this).prop("disabled", true).text("updating...");
+    query("updateSystem");
+    setTimeout(function(){
+        document.location.reload(true);
+    }, 5000);
+});
 
 
 // ** DATA EDITOR ** //

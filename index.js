@@ -13,6 +13,7 @@ const child_process = require('child_process');
 var os = require('os');
 let compareVersions = require('compare-versions');
 var pjson = require('./package.json');
+let exec = require("child_process").exec;
 
 let new_version_available = false;
 
@@ -104,12 +105,21 @@ app.get("/checkUpdate", async (req,res)=>{
         let github_release_version = github_release.tag_name;
         if( compareVersions.compare(pjson.version, github_release_version, '<') ){
             res.send(github_release_version);
+            new_version_available = true;
         }else{
+            new_version_available = false;
             res.send("");
         }
     } catch (error) {
         res.send("");
     }
+});
+
+app.get("/updateSystem", async (req,res)=>{
+    //pjson.version
+    if(!new_version_available) return res.status(400).send("Your server is up to date!");
+    exec("cd /mcadmin && git pull && npm i && pm2 restart main");
+    res.send('ok');
 });
 
 app.get("/verifyPassword", (req,res)=>{
