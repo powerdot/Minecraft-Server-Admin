@@ -281,25 +281,28 @@ app.post('/uploadMap', async(req, res)=>{
     if( fs.existsSync( map_path ) ) return res.status(400).send("map with name exists");
     console.log(3);
     fs.mkdirSync(map_path, {recursive: true});
-    console.log(1);
-    req.files.map.mv(map_zip_path);
     console.log(4);
-    await decompress(map_zip_path, map_path);
+    console.log("map_path:",map_path);
+    console.log("map_zip_path:",map_zip_path);
+    console.log("server_path:",server_path);
+    req.files.map.mv(map_zip_path);
     console.log(5);
+    await decompress(map_zip_path, map_path);
+    console.log(6);
     fs.unlinkSync(map_zip_path);
 
     // nesting files first try
     if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
-        console.log(6);
+        console.log(7);
         // searching inside folders
         let dirs = getDirectories( path.resolve(map_path) );
         let found = false;
         for(let dir of dirs){
-            console.log(7);
+            console.log(8);
             if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
                 // map found: replace current content with it
                 found = true;
-                console.log(8);
+                console.log(9);
                 fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
                 rimraf(map_path, function(){
                     fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
