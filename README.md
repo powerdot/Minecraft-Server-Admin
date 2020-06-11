@@ -3,13 +3,13 @@
 # Easy deploy
 
 ## Step 1: Get a server
-Rent any server from any VPS/VDS provider: Yandex Cloud, Vscale, DigitalOcean and etc...
+Rent any server from any VPS/VDS provider: [Yandex Cloud](https://cloud.yandex.ru/), [Vscale](https://vscale.io/), [DigitalOcean](https://www.digitalocean.com/), [Selectel](https://selectel.ru/) and [etc](https://www.techradar.com/news/best-vps-hosting)...
 
-Look for best cofigurations below.
+Look for [best cofigurations](#for-good-gameplay) below.
 
 ## Step 2: Login to server via SSH
-*On Windows by Pretty SSH Client.
-*On MacOS/Linux by terminal.
+* On Windows by Pretty SSH Client.
+* On MacOS/Linux by terminal.
 
 ## Step 3: Install
 
