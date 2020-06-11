@@ -147,7 +147,7 @@ sudo apt-get install -y nodejs
 * Map backups
 * Change admin password
 * Configure RAM for server (minecraft runner option)
-* Optimize SDF engine queries (too much in Network)
+[x] Optimize SDF engine queries (too much in Network)
 * Run multiple servers
 * Recomendation system by VPS configuration
 * Free maps marketplace (waiting for Patrons to supply $ for architecture)
