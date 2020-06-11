@@ -286,43 +286,43 @@ app.post('/uploadMap', async(req, res)=>{
     console.log("map_path:",map_path);
     console.log("map_zip_path:",map_zip_path);
     console.log("server_path:",server_path);
-    req.files.map.mv(map_zip_path);
-    console.log(5);
-    try{
-        execSync(`7z x ${map_zip_path} -o${map_path}`);
-    }catch(e){
+    req.files.map.mv(map_zip_path, function(){
+        console.log(5);
+        try{
+            execSync(`7z x ${map_zip_path} -o${map_path}`);
+        }catch(e){
+            fs.unlinkSync(map_zip_path);
+            return res.status(500).send("Error while unzip archive.");
+        }
+        console.log(6);
         fs.unlinkSync(map_zip_path);
-        return res.status(500).send("Error while unzip archive.");
-    }
-    console.log(6);
-    fs.unlinkSync(map_zip_path);
-
-    // nesting files first try
-    if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
-        console.log(7);
-        // searching inside folders
-        let dirs = getDirectories( path.resolve(map_path) );
-        let found = false;
-        for(let dir of dirs){
-            console.log(8);
-            if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
-                // map found: replace current content with it
-                found = true;
-                console.log(9);
-                fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
-                rimraf(map_path, function(){
-                    fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
-                });
+    
+        // nesting files first try
+        if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
+            console.log(7);
+            // searching inside folders
+            let dirs = getDirectories( path.resolve(map_path) );
+            let found = false;
+            for(let dir of dirs){
+                console.log(8);
+                if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
+                    // map found: replace current content with it
+                    found = true;
+                    console.log(9);
+                    fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
+                    rimraf(map_path, function(){
+                        fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
+                    });
+                }
+            }
+    
+            if(!found){
+                rimraf.sync(map_path);
+                return res.status(400).send("not found lavel.dat after unzip, add only nesting content.");
             }
         }
-
-        if(!found){
-            rimraf.sync(map_path);
-            return res.status(400).send("not found lavel.dat after unzip, add only nesting content.");
-        }
-    }
-
-    res.send("map uploaded!");
+        res.send("map uploaded!");
+    });
 });
 
 app.get('/getServerProperties', (req, res)=>{
