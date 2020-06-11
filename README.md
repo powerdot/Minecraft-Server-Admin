@@ -17,7 +17,7 @@
 ## Step 1: Get a server
 Rent any server from any VPS/VDS provider: [Yandex Cloud](https://cloud.yandex.ru/), [Vscale](https://vscale.io/), [DigitalOcean](https://www.digitalocean.com/), [Selectel](https://selectel.ru/) and [etc](https://www.techradar.com/news/best-vps-hosting)...
 
-Look for [best cofigurations](#for-good-gameplay) below.
+Look for [best configurations](#for-good-gameplay) below.
 
 ## Step 2: Login to server via SSH
 * On Windows by Pretty SSH Client.
@@ -40,7 +40,7 @@ And then enter:
 sudo ./install.sh
 ```
 
-Then we advice you to restart server to erase RAM usage by installing.  
+Then we advise you to restart server to erase RAM usage by installing.  
 
 After that you can access your Web Admin by: http://your.ip.address:2020 and your password!  
 Hooray!
@@ -118,7 +118,7 @@ ufw allow 25565
 
 ## Minecraft Admin can't find maps (selectbox is empty)
 Check your NodeJS version on server.  
-We are installed latest, but sometimes it can be too old to start our "super code".  
+We installed the latest version, but sometimes it can be too old to start our "super code".  
 ```bash
 node -v
 ```
@@ -132,7 +132,7 @@ If you see this:
 ```bash
 TypeError: dirent.isDirectory is not a function
 ```
-That's all about update your NodeJS version to latest.  
+You should update NodeJS version to latest.  
 
 There is how you can update it:
 ```bash
