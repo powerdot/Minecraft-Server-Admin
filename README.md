@@ -1,5 +1,17 @@
 [![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png)](https://github.com/powerdot/Minecraft-Server-Admin)
 
+* [Easy deploy](#easy-deploy)
+* [Configurations](#configurations)
+* * [Minimal](#minimal)
+* * [Good](#for-good-gameplay)
+* * [Our experience](#configurations-that-we-are-tried-already)
+* [Troubles](#troubles)
+* * [Ports are closed](#ports-are-closed)
+* * [Can't find maps](#minecraft-admin-cant-find-maps-selectbox-is-empty)
+* [To do](#to-do)
+* [Develover git@powerdot](https://github.com/powerdot/)
+* [Donate us](https://patreon.com/minecraft_admin)
+
 # Easy deploy
 
 ## Step 1: Get a server
