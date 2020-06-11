@@ -44,7 +44,7 @@ Hooray!
 * 1 CPU
 
 ## Configuration for good gameplay
-* Ubuntu 18.04
+* Ubuntu 18.04 and higher
 * Public IP address
 * Internet connection
 * Server allocation: closest location (For example: city where you live)

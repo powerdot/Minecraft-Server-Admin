@@ -13,21 +13,21 @@ if [ $(id -u) != "0" ]; then
 fi
 
 echo "System update"
-apt-get update -qq
-apt-get upgrade –qq
+apt-get -qq update
+apt-get -qq upgrade
 # ok
 
 echo "Installing: nodejs"
-apt install nodejs -qq
+apt-get -qq install nodejs -y
 # ok
 
 echo "Updating: nodejs"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-apt-get install -qq nodejs
+apt-get -qq install nodejs -y
 #ok
 
 echo "Installing: npm"
-apt install npm -qq
+apt-get -qq install npm -y
 # ok
 
 echo "Installing: npm pm2"
@@ -35,11 +35,11 @@ npm i pm2 -g --silent
 # ok
 
 echo "Installing: git"
-apt install git -y -qq
+apt-get -qq install git -y
 # ok
 
 echo "Installing: openjdk-8-jre-headless"
-apt install openjdk-8-jre-headless -y -qq
+apt-get -qq install openjdk-8-jre-headless -y
 
 echo "Cloning git repo to path /mcadmin"
 git clone https://github.com/powerdot/Minecraft-Server-Admin /mcadmin
@@ -62,7 +62,11 @@ ufw allow 25565
 
 echo "Setting server to launch after startup"
 pm2 startup upstart
-
-echo "Now it's ready to go! Just go to http://<youripaddress>:2020/ and login!"
+echo "####### CONGRATULATIONS! ###################################################"
+echo "# Now it's ready to go! Just go to http://<youripaddress>:2020/ and login! #"
+echo "############################################################################"
+echo "####### Your IP address looks like: ########################################"
+hostname -I | cut -d' ' -f1
+echo "############################################################################"
 
 exit 0
