@@ -31,7 +31,7 @@ util.inherits(Game, events.EventEmitter);
 
 // default properties
 Game.prototype.ram = (parseInt(os.totalmem()/1024/1024) - 100)+"M"//"1G";
-Game.prototype.java = "sudo java";
+Game.prototype.java = "java";
 Game.prototype.status = "Stopped";
 
 // automatically generate the command arguments based on the object's state
