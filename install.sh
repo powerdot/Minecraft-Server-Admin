@@ -17,6 +17,10 @@ apt-get -qq update
 apt-get -qq upgrade
 # ok
 
+echo "Installing: curl"
+apt-get -qq install curl -y
+# ok
+
 echo "Installing: nodejs"
 apt-get -qq install nodejs -y
 # ok
@@ -24,7 +28,7 @@ apt-get -qq install nodejs -y
 echo "Updating: nodejs"
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 apt-get -qq install nodejs -y
-#ok
+# ok
 
 echo "Installing: npm"
 apt-get -qq install npm -y
@@ -62,11 +66,19 @@ ufw allow 25565
 
 echo "Setting server to launch after startup"
 pm2 startup upstart
+
+printf "\033c"
 echo "####### CONGRATULATIONS! ###################################################"
-echo "# Now it's ready to go! Just go to http://<youripaddress>:2020/ and login! #"
+echo "Now it's ready to go! Just go to http://<youripaddress>:2020/ and login!"
 echo "############################################################################"
-echo "####### Your IP address looks like: ########################################"
+echo "####### Your IP address looks like #########################################"
 hostname -I | cut -d' ' -f1
+echo "############################################################################"
+echo "####### Your Web Admin Password is #########################################"
+echo $password
+echo "############################################################################"
+echo "####### Gift us with coffee ################################################"
+echo "-- -- -- >> https://www.patreon.com/minecraft_admin << -- -- --"
 echo "############################################################################"
 
 exit 0
