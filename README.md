@@ -1,5 +1,3 @@
-# NodeJs Minecraft Admin
-
 [![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png)](https://github.com/powerdot/Minecraft-Server-Admin)
 
 # Easy deploy
