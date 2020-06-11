@@ -11,6 +11,10 @@ var rimraf = require("rimraf");
 const readline = require("readline");
 const child_process = require('child_process');
 var os = require('os');
+let compareVersions = require('compare-versions');
+var pjson = require('./package.json');
+
+let new_version_available = false;
 
 console.log("Server running on",os.totalmem()/1024/1024, 'MB RAM');
 
@@ -79,6 +83,35 @@ app.use((req,res, next)=>{
     return next();
 });
 
+let github_cache = {
+    data: undefined,
+    update: 0
+}
+app.get("/checkUpdate", async (req,res)=>{
+    //pjson.version
+    let current_time = parseInt((new Date()).getTime()/1000); // seconds
+    let cache_wait = 2*60*60; // 2 * 1 min * 60 = 2 hour
+    try {
+        let github;
+        if(current_time - github_cache.update > cache_wait) {
+            console.log(current_time, github_cache.update)
+            console.log("Getting latest release info from github to check update...");
+            github_cache.update = current_time;
+            github_cache.data = await axios.get("https://api.github.com/repos/powerdot/Minecraft-Server-Admin/releases/latest");
+        }
+        github = github_cache.data;
+        let github_release = github.data;
+        let github_release_version = github_release.tag_name;
+        if( compareVersions.compare(pjson.version, github_release_version, '<') ){
+            res.send(github_release_version);
+        }else{
+            res.send("");
+        }
+    } catch (error) {
+        res.send("");
+    }
+});
+
 app.get("/verifyPassword", (req,res)=>{
     res.send("ok");
 });
@@ -121,8 +154,8 @@ app.get("/logs", (req,res)=>{
 });
 
 app.get("/command", (req, res)=>{
-    if(!game) return res.status(400).send("start game");
-    if(game.status != "Running") return res.status(400).send("start game");
+    if(!game) return res.send("start game");
+    if(game.status != "Running") return res.send("start game");
     if(!req.query.text) return res.status(400).send("send param 'text'");
     game.command(req.query.text);
     res.send(req.query.text);
@@ -134,6 +167,8 @@ app.get("/settings", (req, res)=>{
 });
 
 app.get("/players", (req, res)=>{
+    if(!game) return res.send("");
+    if(game.status != "Running") return res.send("");
     let players = game.players;
     res.send(players);
 });

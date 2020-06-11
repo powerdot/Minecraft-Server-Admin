@@ -33,7 +33,7 @@ body{
     margin-top: 30px;
 }
 
-[subpage="first"], [subpage="install_server_version"], [subpage="upload_server_map"], [subpage="loading"], [subpage="map_editor"]{
+[subpage="first"], [subpage="install_server_version"], [subpage="upload_server_map"], [subpage="loading"], [subpage="map_editor"], [subpage="update_mca"]{
     padding-top: 100px;
 }
 

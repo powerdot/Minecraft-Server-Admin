@@ -68,30 +68,49 @@ function query(path, params, cb){
     if(!cb) cb = function(){};
     if(!params) params = {};
     let updated = (new Date()).getTime();
-    if(!query_queue[path]) query_queue[path] = {status: 'new', updated, query: undefined};
+    if(!query_queue[path]) query_queue[path] = {status: 'new', updated, query: undefined, updates_without_changes: 0};
     if(query_queue[path] == 'waiting') return console.log("waiting for response", query_queue[path], 'before create new query.');
-    query_queue[path] = {status: 'waiting', updated};
+    query_queue[path].status = "waiting";
+    query_queue[path].updated = updated;
     // console.log("query", path, params);
     params.password = localStorage.NMAPassword;
     if(path == "install") changeSubpage("loading");
     query_queue[path].query = $.get(path, params).done(function(d){
-        cb(d); query_queue[path] = {status: 'done', updated};
+        query_queue[path].status = "done";
+        query_queue[path].updated = updated;
+        cb(d);
     }).fail(function(d){
-        cb(false); query_queue[path] = {status: 'error', updated};
+        query_queue[path].status = "error";
+        query_queue[path].updated = updated;
+        cb(false);
     });
 }
 
+$('[show-if-data-query]').addClass("hidden");
+
 let last_DataQueryUpdate = parseInt((new Date()).getTime()/1000)-10;
 function updateDataQuery(params = {}){
+    let currentTime = parseInt((new Date()).getTime()/1000);
     if(!params.force){
-        if(parseInt((new Date()).getTime()/1000) - last_DataQueryUpdate <= 2) return;
+        if(currentTime - last_DataQueryUpdate <= 1) return;
     }
     last_DataQueryUpdate = parseInt((new Date()).getTime()/1000);
     if(!localStorage.NMAPassword) return;
-
     for(let data_query of primary_data_queries){
+        if(query_queue[data_query]){
+            if(!params.force){
+                if(query_queue[data_query].updates_without_changes >= 3 && currentTime - (query_queue[data_query].updated/1000) <= 3) continue;
+                if(query_queue[data_query].updates_without_changes >= 6 && currentTime - (query_queue[data_query].updated/1000) <= 10) continue;
+                if(query_queue[data_query].updates_without_changes >= 20 && currentTime - (query_queue[data_query].updated/1000) <= 60) continue;
+            }
+        }
         query(data_query, {}, function(d){
-            if(server_data[data_query] == JSON.stringify(d)) return;
+            if(server_data[data_query] == JSON.stringify(d)) {
+                query_queue[data_query].updates_without_changes++;
+                //console.log("without updates", data_query, query_queue[data_query], query_queue[data_query].updates_without_changes)
+                return;
+            }
+            query_queue[data_query].updates_without_changes = 0;
             server_data[data_query] = JSON.stringify(d);
 
             let depended_data_queries = data_queries.filter(x=>x.includes(`${data_query}:`));
@@ -134,6 +153,12 @@ function updateDataQuery(params = {}){
                             break;
                     }
                 }
+
+                $('[show-if-data-query="'+depended_data_query+'"]').each(function(i, val){
+                    if(!d) return $(val).addClass("hidden");
+                    if(d=="") return $(val).addClass("hidden");
+                    return $(val).removeClass("hidden");
+                });
 
                 $('[data-query="'+depended_data_query+'"]').each(function(i, val){
                     let tag = $(this).prop("tagName");
@@ -200,7 +225,8 @@ $('[change-query]').change(function(){
     });
 });
 
-setInterval(updateDataQuery, 2000);
+
+setInterval(updateDataQuery, 1000);
 
 
 

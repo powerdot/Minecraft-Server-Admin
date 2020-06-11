@@ -39,6 +39,9 @@
                 <ul class="navbar-nav mr-auto"></ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="#" to-subpage="update_mca" show-if-data-query="checkUpdate"><i class="fa fa-angle-double-down" aria-hidden="true"></i> New version available!</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://patreon.com/minecraft_admin" target="_blank">Donate a coffee <i class="fa fa-coffee" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
@@ -155,6 +158,32 @@
             </div>
         </div>
 
+        <div subpage="update_mca" class='hidden' headTitle="Upload map to server">
+            <div class="container">
+                <div class='row'>
+                    <div class='mx-auto col-sm-3'>
+                        <div class="form-group">
+                           <h3><b>v<span data-query="checkUpdate"></span></b> is available!</h3>
+                           Update your server to get more features and less bugs!
+                           <br>
+                           <br>
+                           It will take few seconds.
+                           <br>
+                           Your data and maps will not erase.
+                        </div>
+                        <div class="form-group">
+                            <div style="text-align: center; font-size: 10pt;">Press</div>
+                            <button type="submit" class="btn btn-primary btn-block update_mca">here</button>
+                            <div style="text-align: center; font-size: 10pt;">to update system automatically.</div>
+
+                            <br>
+                            <button type="submit" class="btn btn-default btn-block" to-subpage="main">Cancel</button>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div subpage="main" class='hidden' headTitle="Dashboard">
             <div class="container">
                 <div class='row'>
@@ -254,6 +283,12 @@
             </div>
         </div>
 
+    </div>
+
+    <div page='offline' class="hidden">
+        Service is offline.
+        <br>
+        Can't reach server.
     </div>
     
     <div class='data-editor hidden'>
