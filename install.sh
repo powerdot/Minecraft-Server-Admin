@@ -42,6 +42,10 @@ echo "Installing: git"
 apt-get -qq install git -y
 # ok
 
+echo "Installing: unzip"
+apt-get -qq install unzip -y
+# ok
+
 echo "Installing: openjdk-8-jre-headless"
 apt-get -qq install openjdk-8-jre-headless -y
 

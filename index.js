@@ -14,6 +14,7 @@ var os = require('os');
 let compareVersions = require('compare-versions');
 var pjson = require('./package.json');
 let exec = require("child_process").exec;
+let execSync = require("child_process").execSync;
 var timeout = require('connect-timeout');
 
 app.use(timeout('1000s'));
@@ -287,7 +288,8 @@ app.post('/uploadMap', async(req, res)=>{
     console.log("server_path:",server_path);
     req.files.map.mv(map_zip_path);
     console.log(5);
-    await decompress(map_zip_path, map_path);
+    execSync(`unzip ${map_zip_path} -d ${map_path}`);
+    exec
     console.log(6);
     fs.unlinkSync(map_zip_path);
 
