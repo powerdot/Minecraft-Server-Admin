@@ -42,8 +42,8 @@ echo "Installing: git"
 apt-get -qq install git -y
 # ok
 
-echo "Installing: unzip"
-apt-get -qq install unzip -y
+echo "Installing: 7z"
+apt-get -qq install p7zip-full -y
 # ok
 
 echo "Installing: openjdk-8-jre-headless"

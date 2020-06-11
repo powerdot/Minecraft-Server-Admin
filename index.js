@@ -289,7 +289,7 @@ app.post('/uploadMap', async(req, res)=>{
     req.files.map.mv(map_zip_path);
     console.log(5);
     try{
-        execSync(`unzip ${map_zip_path} -d ${map_path}`);
+        execSync(`7z x ${map_zip_path} -o${map_path}`);
     }catch(e){
         fs.unlinkSync(map_zip_path);
         return res.status(500).send("Error while unzip archive.");
