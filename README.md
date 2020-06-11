@@ -151,3 +151,7 @@ sudo apt-get install -y nodejs
 * Run multiple servers
 * Recomendation system by VPS configuration
 * Free maps marketplace (waiting for Patrons to supply $ for architecture)
+* Blacklist managment
+* Whitelist managment
+* Interactive user managment
+* Update checking
