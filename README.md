@@ -24,8 +24,9 @@ Rent any server from any VPS/VDS provider: [Yandex Cloud](https://cloud.yandex.r
 Look for [best configurations](#for-good-gameplay) below.
 
 ## Step 2: Login to server via SSH
-* On Windows by Pretty SSH Client.
-* On MacOS/Linux by terminal.
+* Via Web SSH Console by your hosting provider (if possible).
+* Via Windows by Pretty SSH Client.
+* Via MacOS/Linux by terminal.
 
 ## Step 3: Install
 
