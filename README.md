@@ -12,7 +12,7 @@
 * [Develover git@powerdot](https://github.com/powerdot/)
 * [Donate us](https://patreon.com/minecraft_admin)  
 
-Also look [Screenshots](https://github.com/powerdot/Minecraft-Server-Admin/blob/master/README.md)!
+Also look [Screenshots](https://github.com/powerdot/Minecraft-Server-Admin/blob/master/SCREENSHOTS.md)!
 
 # Easy deploy
 
