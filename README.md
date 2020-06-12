@@ -50,6 +50,8 @@ Then we advise you to restart server to erase RAM usage by installing.
 After that you can access your Web Admin by: http://your.ip.address:2020 and your password!  
 Hooray!
 
+Look for [tutorials](#video-tutorials)!
+
 # Configurations
 
 ## Minimal
@@ -177,4 +179,5 @@ Project [patrons](https://www.patreon.com/minecraft_admin) have the opportunity 
 
 # Video Tutorials
 
-Russian (by Илья Рычагов): [https://www.youtube.com/watch?v=Hvp5vb3RBA0](https://www.youtube.com/watch?v=Hvp5vb3RBA0)
+English (by Ilya Rychagov): [https://www.youtube.com/watch?v=_WQ12tv-QFQ](https://www.youtube.com/watch?v=_WQ12tv-QFQ)   
+Russian (by Илья Рычагов): [https://www.youtube.com/watch?v=Hvp5vb3RBA0](https://www.youtube.com/watch?v=Hvp5vb3RBA0)  
