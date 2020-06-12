@@ -1,4 +1,4 @@
-[![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png)](https://github.com/powerdot/Minecraft-Server-Admin)
+[![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png?v2)](https://github.com/powerdot/Minecraft-Server-Admin)
 
 # Screenshots
 
