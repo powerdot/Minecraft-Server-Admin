@@ -173,3 +173,7 @@ sudo apt-get install -y nodejs
 - [ ] Free accounts to store maps (waiting for Patrons to supply $ for architecture)
 
 Project [patrons](https://www.patreon.com/minecraft_admin) have the opportunity to accelerate the development of new features!  
+
+# Video Tutorials
+
+Russian (by Илья Рычагов): [https://www.youtube.com/watch?v=Hvp5vb3RBA0](https://www.youtube.com/watch?v=Hvp5vb3RBA0)
