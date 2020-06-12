@@ -16,6 +16,8 @@ Also look [Screenshots](https://github.com/powerdot/Minecraft-Server-Admin/blob/
 
 # Easy deploy
 
+Create our own Minecraft Server on VPS/VDS and play with friends!
+
 ## Step 1: Get a server
 Rent any server from any VPS/VDS provider: [Yandex Cloud](https://cloud.yandex.ru/), [Vscale](https://vscale.io/), [DigitalOcean](https://www.digitalocean.com/), [Selectel](https://selectel.ru/) and [etc](https://www.techradar.com/news/best-vps-hosting)...
 
