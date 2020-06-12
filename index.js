@@ -119,6 +119,20 @@ app.get("/checkUpdate", async (req,res)=>{
     }
 });
 
+app.get("/forceCheckUpdate", async (req,res)=>{
+    //pjson.version
+    let current_time = parseInt((new Date()).getTime()/1000); // seconds
+    try {
+        let github;
+        console.log("Getting latest release info from github to check update...");
+        github_cache.update = current_time;
+        github_cache.data = await axios.get("https://api.github.com/repos/powerdot/Minecraft-Server-Admin/releases/latest");
+        res.redirect('/checkUpdate');
+    } catch (error) {
+        res.send("");
+    }
+});
+
 app.get("/mca_version", async (req,res)=>{
     res.send(pjson.version);
 });

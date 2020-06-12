@@ -194,3 +194,7 @@ body[gamestatus="offline"] [data-editable]:hover{
 .footer a{
     color: rgba(0, 0, 0, 0.7);
 }
+
+.footer .forceCheckUpdate{
+    font-size: 10pt;
+}

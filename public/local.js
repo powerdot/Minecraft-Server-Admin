@@ -344,6 +344,12 @@ $("button.update_mca").click(function(){
     }, 10000);
 });
 
+$('.forceCheckUpdate').click(function(){
+    query("forceCheckUpdate", {}, function(){
+        document.location.reload(true);
+    });
+});
+
 
 // ** DATA EDITOR ** //
 
