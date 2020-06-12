@@ -143,17 +143,31 @@ sudo apt-get install -y nodejs
 ```
 
 # To do
-* Server online stats
-* VPS stats
-* Update api routing
-* Map backups
-* Change admin password
-* Configure RAM for server (minecraft runner option)
-* Run multiple servers
-* Recomendation system by VPS configuration
-* Free maps marketplace (waiting for Patrons to supply $ for architecture)
-* Blacklist managment
-* Whitelist managment
-* Interactive user managment
-* Update checking
-* Server file manager
+- [ ] Update API routing
+- [ ] Recomendation system by VPS configuration
+- [ ] Minecraft server stats
+- [ ] Run multiple servers
+- [ ] Change admin password
+- [ ] Configure RAM for server (minecraft runner option)
+- [ ] Server file manager
+- [ ] Upgrade UI
+- [x] Install multiple servers
+- [ ] Install multiple servers of one version
+- [x] Online players
+- [x] Autostartup after system startup
+- [x] Upload and download maps
+- [ ] Map backups
+- [ ] Download map from URL
+- [x] Responsive web design
+- [ ] Commandline tips
+- [ ] VPS stats
+- [ ] Blacklist managment
+- [ ] Whitelist managment
+- [ ] Interactive user managment
+- [x] Update checking
+- [ ] Bukkit support
+- [ ] Bukkit mods support
+- [ ] Free maps marketplace (waiting for Patrons to supply $ for architecture)
+- [ ] Free accounts to store maps (waiting for Patrons to supply $ for architecture)
+
+Project [patrons](https://www.patreon.com/minecraft_admin) have the opportunity to accelerate the development of new features!  
