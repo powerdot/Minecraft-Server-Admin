@@ -159,11 +159,17 @@ app.get("/restart", (req, res)=>{
 
 app.get("/start", (req, res)=>{
     if( !getConfig('server_version') ) return res.status(400).send("set /setServerVersion?version=<>");
-    if( !getConfig('level-name') ) updateServerProperty("level-name", "world");
+    if( !getConfig('map') ){
+        setConfig('map', "world");
+        updateServerProperty("level-name", "world");
+    }
     game = new Game(
         path.resolve(servers_path, `server-${getConfig('server_version')}`), 
         path.resolve(jars_path, `server-${getConfig('server_version')}.jar`), 
-        {debug: true}
+        {
+            debug: true,
+            // world: getConfig('map')
+        }
     );
     game.start((err, process)=>{
         console.log("started!");
@@ -273,42 +279,30 @@ app.post('/uploadMap', async(req, res)=>{
     if(!req.body.name) return res.status(400).send("need 'name' param");
     if(!getConfig("server_version")) return res.status(400).send("set server_version");
     if(!req.body.version) req.body.version = getConfig("server_version");
-    console.log(1);
     let server_path = path.resolve(servers_path, `server-${req.body.version}`);
     if( !fs.existsSync( server_path ) ) return res.status(400).send("no server directory exists");
-    console.log(2);
     let map_zip_path = server_path +"/"+ req.body.name + '.zip';
     let map_path = path.resolve(server_path, req.body.name);
     if( fs.existsSync( map_path ) ) return res.status(400).send("map with name exists");
-    console.log(3);
     fs.mkdirSync(map_path, {recursive: true});
-    console.log(4);
-    console.log("map_path:",map_path);
-    console.log("map_zip_path:",map_zip_path);
-    console.log("server_path:",server_path);
     req.files.map.mv(map_zip_path, function(){
-        console.log(5);
         try{
             execSync(`7z x ${map_zip_path} -o${map_path}`);
         }catch(e){
             fs.unlinkSync(map_zip_path);
             return res.status(500).send("Error while unzip archive.");
         }
-        console.log(6);
         fs.unlinkSync(map_zip_path);
     
         // nesting files first try
         if( !fs.existsSync( path.resolve(map_path, 'level.dat') ) ){
-            console.log(7);
             // searching inside folders
             let dirs = getDirectories( path.resolve(map_path) );
             let found = false;
             for(let dir of dirs){
-                console.log(8);
                 if( fs.existsSync( path.resolve(map_path, dir, 'level.dat') ) ){
                     // map found: replace current content with it
                     found = true;
-                    console.log(9);
                     fs.renameSync( path.resolve(map_path, dir), path.resolve(server_path, "temp_"+req.body.name));
                     rimraf(map_path, function(){
                         fs.renameSync( path.resolve(server_path, "temp_"+req.body.name), map_path );
@@ -338,7 +332,7 @@ app.get('/updateServerProperty', (req, res)=>{
 app.get('/serverMaps', (req,res)=>{
     if( !getConfig('server_version') ) return res.status(400).send("set /setServerVersion?version=<>");
     let maps = {
-        current: getServerProperty('level-name'),
+        current: getConfig('map'),
         maps: []
     };
     let dirs = getDirectories( path.resolve(servers_path, `server-${getConfig('server_version')}`) );
@@ -370,6 +364,7 @@ app.get('/getServerMap', (req, res)=>{
 
 app.get('/renameServerMap', (req, res)=>{
     if(!req.query.name) return res.status(400).send("send name param");
+    let server_path = path.resolve(servers_path, `server-${getConfig('server_version')}`);
     let old_name = getConfig("map");
     let new_name = req.query.name;
     setConfig("map", new_name);
@@ -391,6 +386,7 @@ app.get("/downloadServerMap", (req, res)=>{
 
 app.get("/removeServerMap", (req, res)=>{
     // получение списка карт без удаляемоей карты
+    let server_path = path.resolve(servers_path, `server-${getConfig('server_version')}`);
     let current_map = getConfig("map");
     let maps = [];
     let dirs = getDirectories( path.resolve(servers_path, `server-${getConfig('server_version')}`) );
@@ -414,6 +410,7 @@ app.get("/removeServerMap", (req, res)=>{
 
 app.get('/setServerMap', (req, res)=>{
     if(!req.query.map) return res.status(400).send("send map name with map param");
+    let server_path = path.resolve(servers_path, `server-${getConfig('server_version')}`);
     setConfig("map", req.query.map);
     updateServerProperty("level-name", req.query.map);
     res.send("map set: "+req.query.map)

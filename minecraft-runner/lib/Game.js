@@ -1,6 +1,7 @@
 var events   = require("events"),
     path     = require("path"),
     spawn    = require("child_process").spawn,
+    exec    = require("child_process").exec,
     util     = require("util"),
     _        = require("lodash"),
     patterns = require("./patterns"),
@@ -20,6 +21,7 @@ function Game(dir, jar, options) {
     _.extend(this, options);
     this.dir = dir;
     this.jar = jar;
+    this.world = options.world||"world";
     this.players = [];
 
     events.EventEmitter.call(this);
@@ -42,7 +44,8 @@ Object.defineProperty(Game.prototype, "args", {
             "-Xms" + this.ram,
             "-Xmx" + this.ram,
             this.jar,
-            "nogui"
+            "nogui",
+            // "--world="+this.world
         ];
     }
 });
@@ -62,7 +65,6 @@ Game.prototype.start = function (callback) {
 
     this.emit("start");
     this.status = "Starting";
-    //console.log(this.java, this.args, this.dir);
     this.log = "";
     this.process = spawn(this.java, this.args, { cwd: this.dir });
 
