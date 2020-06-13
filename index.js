@@ -431,8 +431,6 @@ app.get('/setServerMap', (req, res)=>{
 });
 
 app.get('/getServerFullAddress', async (req, res)=>{
-    if(!game) return res.send("");
-    if(game.status!='Running') return res.send("");
     if(public_ip_data){
         if(public_ip_data.ip && public_ip_data.port) return res.send(public_ip_data);
     }
