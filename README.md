@@ -179,5 +179,5 @@ Project [patrons](https://www.patreon.com/minecraft_admin) have the opportunity 
 
 # Video Tutorials
 
-English (by Ilya Rychagov): [https://www.youtube.com/watch?v=_WQ12tv-QFQ](https://www.youtube.com/watch?v=_WQ12tv-QFQ)   
+English (by Natalie Burdenko): [https://www.youtube.com/watch?v=IlLuzq8MDY0](https://www.youtube.com/watch?v=IlLuzq8MDY0)  
 Russian (by Илья Рычагов): [https://www.youtube.com/watch?v=Hvp5vb3RBA0](https://www.youtube.com/watch?v=Hvp5vb3RBA0)  
