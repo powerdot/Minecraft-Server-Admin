@@ -181,3 +181,12 @@ Project [patrons](https://www.patreon.com/minecraft_admin) have the opportunity 
 
 English (by Natalie Burdenko): [https://www.youtube.com/watch?v=IlLuzq8MDY0](https://www.youtube.com/watch?v=IlLuzq8MDY0)  
 Russian (by Илья Рычагов): [https://www.youtube.com/watch?v=Hvp5vb3RBA0](https://www.youtube.com/watch?v=Hvp5vb3RBA0)  
+
+# Tags
+
+How to easy install minecraft on ubuntu server?  
+Easiest way to setup minecraft server!  
+Minecraft server on ubuntu  
+Minecraft java on ubuntu server  
+Самый простой способ поставить Minecraft на сервер  
+Как поставить Minecraft на Ubuntu Server
