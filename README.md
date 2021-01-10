@@ -1,5 +1,7 @@
 [![Minecraft Admin Image](https://storage.yandexcloud.net/actid-storage/Minecraft-Server-Admin/mnjs.png?v2)](https://github.com/powerdot/Minecraft-Server-Admin)
 
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/powerdot/Minecraft-Server-Admin/tree/master)
+
 * [Easy deploy](#easy-deploy)
 * [Configurations](#configurations)
 * * [Minimal](#minimal)
