@@ -45,7 +45,7 @@ And then enter:
 sudo ./install.sh
 ```
 
-Then we advise you to restart server to erase RAM usage by installing.  
+**Then we advise you to restart server to erase RAM usage by installing.**  
 
 After that you can access your Web Admin by: http://your.ip.address:2020 and your password!  
 Hooray!
