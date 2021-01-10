@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.9",
     "js-file-download": "^0.4.11",
-    "lodash": "^4.17.19",
+    "lodash": ">=4.17.19",
     "rimraf": "^3.0.2"
   }
 }
