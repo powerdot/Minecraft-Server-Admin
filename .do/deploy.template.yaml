@@ -6,4 +6,4 @@ spec:
     repo: powerdot/Minecraft-Server-Admin
     branch: master
     deploy_on_push: false
-   run_command: wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh && ./install.sh
+   run_command: wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh && sudo sh ./install.sh && sudo reboot
