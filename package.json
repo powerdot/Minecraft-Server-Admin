@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "adm-zip": "^0.4.14",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "compare-versions": "^3.6.0",
     "connect-timeout": "^1.9.0",
     "decompress": "^4.2.1",
