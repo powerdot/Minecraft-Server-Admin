@@ -1,0 +1,5 @@
+spec:
+ name: minecraft-admin
+ services:
+ - name: installer
+   run_command: wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh && ./install.sh
