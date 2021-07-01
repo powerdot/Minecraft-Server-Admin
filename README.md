@@ -148,8 +148,7 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 ## Can't run version 1.7
-Update JDK up to 16 version (16 means 1.16).
-JDK16 need Ubuntu Server from 20.04.
+Update JDK up to 16 version. *JDK16 need Ubuntu Server from 20.04.*
 1. Install new VM with Ubuntu 20.04
 3. Run `sudo apt-get -qq update`
 4. Run `sudo apt-get -qq upgrade`
