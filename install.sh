@@ -46,8 +46,8 @@ echo "Installing: 7z"
 apt-get -qq install p7zip-full -y
 # ok
 
-echo "Installing: openjdk-8-jre-headless"
-apt-get -qq install openjdk-8-jre-headless -y
+echo "Installing: openjdk-16-jre-headless"
+apt-get -qq install openjdk-16-jre-headless -y
 
 echo "Cloning git repo to path /mcadmin"
 git clone https://github.com/powerdot/Minecraft-Server-Admin /mcadmin
