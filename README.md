@@ -56,7 +56,7 @@ Look for [tutorials](#video-tutorials)!
 # Configurations
 
 ## Minimal
-* Ubuntu 18.04
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * Public IP address
 * Internet connection
 * Server allocation: everywhere
@@ -65,7 +65,7 @@ Look for [tutorials](#video-tutorials)!
 * 1 VCPU
 
 ## For good gameplay
-* Ubuntu 18.04 and higher
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * Public IP address
 * Internet connection
 * Server allocation: closest location (For example: city where you live)
@@ -76,7 +76,7 @@ Look for [tutorials](#video-tutorials)!
 ## Configurations that we are tried already
 
 ### DigitalOcean ($5)
-* Ubuntu 18.04
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * 1 VCPU
 * 1GB RAM
 * 25GB SSD  
@@ -85,7 +85,7 @@ Fast (SSD) and stable.
 
 ### Yandex Cloud (300RUB ~ $4,5)
 * Platform: Intel Cascade Lake
-* Ubuntu 18.04
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * 5% CPU Garantee
 * 2 VCPU
 * 2GB RAM
@@ -94,7 +94,7 @@ Good for 7-10 players.
 But turns off every 24 hours.
 
 ### Vscale (400RUB ~ $6)
-* Ubuntu 18.04
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * 1 VCPU
 * 1GB RAM
 * 30GB HDD  
@@ -102,7 +102,7 @@ Good for 2-4 players.
 Works good, but slow.
 
 ### Selectel (620RUB ~ $9)
-* Ubuntu 16.04
+* Ubuntu 18.04 / 20.04 (for 1.7)
 * 1 VCPU
 * 1GB RAM
 * 10GB HDD  
