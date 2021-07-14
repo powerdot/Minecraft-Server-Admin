@@ -46,6 +46,10 @@ echo "Installing: 7z"
 apt-get -qq install p7zip-full -y
 # ok
 
+echo "Installing: zip"
+apt-get -qq install zip -y
+# ok
+
 echo "Installing: openjdk-16-jre-headless"
 apt-get -qq install openjdk-16-jre-headless -y
 
