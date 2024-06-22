@@ -157,6 +157,16 @@ Update JDK up to 16 version. *JDK16 need Ubuntu Server from 20.04.*
 7. Download Minecraft-Server-Admin Installer `wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh`
 8. Run Installer `sudo ./install.sh`
 
+## Can't run version 1.21
+Update JDK up to 21 version. *JDK21 need Ubuntu Server from 24.04.*
+1. Install new VM with Ubuntu 24.04
+3. Run `sudo apt-get -qq update`
+4. Run `sudo apt-get -qq upgrade`
+5. Run `sudo apt install openjdk-21-jdk`
+6. Check version by running `java --version`. Must be 21.
+7. Download Minecraft-Server-Admin Installer `wget https://raw.githubusercontent.com/powerdot/Minecraft-Server-Admin/master/install.sh && chmod +x install.sh`
+8. Run Installer `sudo ./install.sh`
+
 # To do
 - [ ] Update API routing
 - [ ] Recomendation system by VPS configuration
